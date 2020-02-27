@@ -26,7 +26,7 @@ namespace CookerHelper.DAL.EFContext
         /// Фото користувача
         /// </summary>
         [StringLength(150)]
-        public string Image { get; set; }
+        public string Photo { get; set; }
 
         /// <summary>
         /// Дата реєстрації

@@ -50,8 +50,10 @@ namespace CookerHelper
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, EFDbContext dbContext)
         {
+            dbContext.Database.EnsureCreated();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -80,6 +82,8 @@ namespace CookerHelper
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            SeederDB.SeedData(app.ApplicationServices, env, this.Configuration);
         }
     }
 }
