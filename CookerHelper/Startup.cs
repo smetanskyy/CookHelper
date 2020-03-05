@@ -74,7 +74,7 @@ namespace CookerHelper
                 RequestPath = new PathString("/photos")
             });
 
-            app.UseCookiePolicy();
+            // app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {

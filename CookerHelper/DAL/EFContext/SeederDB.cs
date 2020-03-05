@@ -12,7 +12,7 @@ namespace CookerHelper.DAL.EFContext
 {
     public class SeederDB
     {
-        private static void SeedGame(EFDbContext context)
+        private static void SeedRole(RoleManager<DbRole> _manager)
         {
             // "Owner", "Administrator", "Manager", "Editor", "Buyer", "Business", "Seller", "Subscriber"
 
@@ -22,10 +22,9 @@ namespace CookerHelper.DAL.EFContext
                 NormalizedName = "ADMINISTRATOR"
             };
 
-            if (!context.Roles.Any(r => r.Name == roleAdmin.Name))
+            if (!_manager.Roles.Any(r => r.Name == roleAdmin.Name))
             {
-                var roleStore = new RoleStore<DbRole>(context);
-                var result = roleStore.CreateAsync(roleAdmin);
+                var result = _manager.CreateAsync(roleAdmin).Result;
             }
 
             var roleSubscriber = new DbRole()
@@ -34,53 +33,49 @@ namespace CookerHelper.DAL.EFContext
                 NormalizedName = "SUBSCRIBER"
             };
 
-            if (!context.Roles.Any(r => r.Name == roleSubscriber.Name))
+            if (!_manager.Roles.Any(r => r.Name == roleSubscriber.Name))
             {
-                var roleStore = new RoleStore<DbRole>(context);
-                var result = roleStore.CreateAsync(roleSubscriber);
+                var result = _manager.CreateAsync(roleSubscriber).Result;
             }
-
+        }
+        private static void SeedUser(UserManager<DbUser> _manager)
+        {
+            var roleName = "administrator";
             var user = new DbUser();
-            user.Email = "ivanna.pugaiko@gmail.com";
-            user.NormalizedEmail = "IVANNA.PUGAIKO@GMAIL.COM";
+            user.Email = "stepan@gmail.com";
+            user.NormalizedEmail = "STEPAN@GMAIL.COM";
             user.EmailConfirmed = true;
-            user.UserName = "smethan";
-            user.NormalizedUserName = "SMETHAN";
+            user.UserName = "stepan@gmail.com"; ;
+            user.NormalizedUserName = "STEPAN@GMAIL.COM";
             user.PhoneNumber = "HUAWEI";
             user.PhoneNumberConfirmed = true;
             user.SecurityStamp = Guid.NewGuid().ToString("D");
             user.TwoFactorEnabled = true;
 
             var password = new PasswordHasher<DbUser>();
-            var hashed = password.HashPassword(user, "QWEry123456");
+            var hashed = password.HashPassword(user, "!QWEry123456");
             user.PasswordHash = hashed;
 
             user.UserProfile = new UserProfile()
             {
                 FirstName = "Stepan",
-                LastName = "Smetanskyy",
-                MiddleName = "Ivanovich",
+                LastName = "Stepanskyy",
+                MiddleName = "Stepanovich",
                 RegistrationDate = DateTime.Now,
                 Photo = "stepanPhoto.jpg"
             };
 
-            if (!context.Users.Any(u => u.UserName == user.UserName))
+            if (!_manager.Users.Any(u => u.UserName == user.UserName))
             {
-                var userStore = new UserStore<DbUser>(context);
-                var result = userStore.CreateAsync(user);
-            }
-
-            if (!context.UserRoles.Any(u => u.UserId == user.Id))
-            {
-                var roleId = context.Roles.FirstOrDefault(r => r.Name == "administrator").Id;
-                var userRole = new DbUserRole()
+                var result = _manager.CreateAsync(user).Result;
+                if (result.Succeeded)
                 {
-                    UserId = user.Id,
-                    RoleId = roleId
-                };
-                if (roleId != null)
-                    context.UserRoles.Add(userRole);
+                    var resultRole = _manager.AddToRoleAsync(user, roleName).Result;
+                }
             }
+        }
+        private static void SeedRecipes(EFDbContext context)
+        {
             context.SaveChangesAsync();
         }
 
@@ -88,8 +83,12 @@ namespace CookerHelper.DAL.EFContext
         {
             using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<DbRole>>();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<DbUser>>();
                 var context = scope.ServiceProvider.GetRequiredService<EFDbContext>();
-                SeederDB.SeedGame(context);
+                SeedRole(roleManager);
+                SeedUser(userManager);
+                SeedRecipes(context);
             }
         }
     }
