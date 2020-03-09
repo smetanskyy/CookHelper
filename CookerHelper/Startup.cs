@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CookerHelper.DAL.EFContext;
+using CookerHelper.DAL.Interfaces;
+using CookerHelper.DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -44,7 +46,7 @@ namespace CookerHelper
             options.Stores.MaxLengthForKeys = 128)
             .AddEntityFrameworkStores<EFDbContext>().AddDefaultTokenProviders();
 
-            // services.AddTransient<ICar, CarRepository>();
+            services.AddTransient<IKindsOfDishes, KindsOfDishesRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -74,11 +76,18 @@ namespace CookerHelper
                 RequestPath = new PathString("/imgKindsOfIngredients")
             });
 
-            fileDestDir = Path.Combine(fileDestRoot, "wwwroot", "images", "typesOfKitches");
+            fileDestDir = Path.Combine(fileDestRoot, "wwwroot", "images", "typesOfKitchens");
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(fileDestDir),
-                RequestPath = new PathString("/imgKindsOfKitches")
+                RequestPath = new PathString("/imgKindsOfKitchens")
+            });
+
+            fileDestDir = Path.Combine(fileDestRoot, "wwwroot", "images", "typesOfDishes");
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(fileDestDir),
+                RequestPath = new PathString("/imgKindsOfDishes")
             });
 
             // app.UseCookiePolicy();

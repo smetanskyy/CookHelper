@@ -189,7 +189,7 @@ namespace CookerHelper.DAL.EFContext
             kindOfIngredient = new KindOfIngredient()
             {
                 KindOfIngredientId = 9,
-                KindOfIngredientNameENG = "Fish & Sesfood",
+                KindOfIngredientNameENG = "Fish & Seafood",
                 KindOfIngredientNameUA = "Риба і морепродукти",
                 Image = "Seafood.jpg"
             };
@@ -228,6 +228,19 @@ namespace CookerHelper.DAL.EFContext
             kindOfIngredient = new KindOfIngredient()
             {
                 KindOfIngredientId = 12,
+                KindOfIngredientNameENG = "Eggs",
+                KindOfIngredientNameUA = "Яйця",
+                Image = "Eggs.jpg"
+            };
+            if (!context.KindsOfIngredients.Any(k => k.KindOfIngredientNameENG == kindOfIngredient.KindOfIngredientNameENG))
+            {
+                context.KindsOfIngredients.Add(kindOfIngredient);
+                context.SaveChanges();
+            }
+
+            kindOfIngredient = new KindOfIngredient()
+            {
+                KindOfIngredientId = 13,
                 KindOfIngredientNameENG = "Other Ingredients",
                 KindOfIngredientNameUA = "Інші інгредієнти",
                 Image = "OtherIngredients.jpg"
@@ -266,6 +279,282 @@ namespace CookerHelper.DAL.EFContext
                 context.SaveChanges();
             }
         }
+        private static void SeedKindsOfDishes(EFDbContext context)
+        {
+            var kindOfDish = new KindOfDish()
+            {
+              KindOfDishId = 1,
+              KindOfDishNameENG = "Pasta & risotto",
+              KindOfDishNameUA = "Паста та різотто",
+              Image = "PastaRisotto.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 2,
+                KindOfDishNameENG = "Salad",
+                KindOfDishNameUA = "Салат",
+                Image = "Salad.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 3,
+                KindOfDishNameENG = "Bread & doughs",
+                KindOfDishNameUA = "Хліб і тісто",
+                Image = "BreadDoughs.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 4,
+                KindOfDishNameENG = "Curry",
+                KindOfDishNameUA = "Каррі",
+                Image = "Curry.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 5,
+                KindOfDishNameENG = "Vegetable sides",
+                KindOfDishNameUA = "Овочеві гарніри",
+                Image = "VegetableSides.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 6,
+                KindOfDishNameENG = "Soup",
+                KindOfDishNameUA = "Супи",
+                Image = "Soup.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 7,
+                KindOfDishNameENG = "Antipasti",
+                KindOfDishNameUA = "Закуски",
+                Image = "Antipasti.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 8,
+                KindOfDishNameENG = "Roast",
+                KindOfDishNameUA = "Смаження. Печення",
+                Image = "Roast.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 9,
+                KindOfDishNameENG = "BBQ food",
+                KindOfDishNameUA = "BBQ страви",
+                Image = "BBQfood.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 10,
+                KindOfDishNameENG = "Stew",
+                KindOfDishNameUA = "Тушковане м'ясо",
+                Image = "Stew.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 11,
+                KindOfDishNameENG = "Pizza",
+                KindOfDishNameUA = "Піца",
+                Image = "Pizza.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 12,
+                KindOfDishNameENG = "Sandwiches & wraps",
+                KindOfDishNameUA = "Бутерброди. Роли",
+                Image = "SandwichesWraps.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 13,
+                KindOfDishNameENG = "Cakes & teatime treats",
+                KindOfDishNameUA = "Торти та частування до чаю",
+                Image = "CakesTeatimeTreats.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 14,
+                KindOfDishNameENG = "Pies & pastries",
+                KindOfDishNameUA = "Пироги та випічка",
+                Image = "PiesPastries.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 15,
+                KindOfDishNameENG = "Sauces & condiments",
+                KindOfDishNameUA = "Соуси та заправки",
+                Image = "SaucesCondiments.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 16,
+                KindOfDishNameENG = "Puddings & desserts",
+                KindOfDishNameUA = "Пудинги та десерти",
+                Image = "PuddingsDesserts.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 17,
+                KindOfDishNameENG = "Drinks",
+                KindOfDishNameUA = "Напої",
+                Image = "Drinks.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 18,
+                KindOfDishNameENG = "Cookies",
+                KindOfDishNameUA = "Печиво",
+                Image = "Cookies.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 19,
+                KindOfDishNameENG = "Meatballs",
+                KindOfDishNameUA = "Фрикадельки. Котлети",
+                Image = "Meatballs.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 20,
+                KindOfDishNameENG = "Muffins",
+                KindOfDishNameUA = "Булочки. Кекси",
+                Image = "Muffins.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+
+            kindOfDish = new KindOfDish()
+            {
+                KindOfDishId = 21,
+                KindOfDishNameENG = "Bakes",
+                KindOfDishNameUA = "Запіканки",
+                Image = "Bakes.jpg"
+            };
+            if (!context.KindsOfDishes.Any(k => k.KindOfDishNameENG == kindOfDish.KindOfDishNameENG))
+            {
+                context.KindsOfDishes.Add(kindOfDish);
+                context.SaveChanges();
+            }
+        }
+
         public static void SeedData(IServiceProvider services, IHostingEnvironment env, IConfiguration config)
         {
             using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -275,9 +564,10 @@ namespace CookerHelper.DAL.EFContext
                 var context = scope.ServiceProvider.GetRequiredService<EFDbContext>();
                 SeedRole(roleManager);
                 SeedUser(userManager);
-                SeedRecipes(context);
                 SeedKindsOfIngredients(context);
                 SeedKindsOfKitchens(context);
+                SeedKindsOfDishes(context);
+                SeedRecipes(context);
             }
         }
     }

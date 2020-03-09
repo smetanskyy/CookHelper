@@ -20,6 +20,7 @@ namespace CookerHelper.Models
         public int FatPer100g { get; set; }
         public int CarbohydratesPer100g { get; set; }
         public int CaloriesPer100g { get; set; }
+        public int Image { get; set; }
 
     }
 }

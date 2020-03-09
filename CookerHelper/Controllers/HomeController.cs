@@ -5,14 +5,30 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CookerHelper.Models;
+using CookerHelper.DAL.Interfaces;
+using CookerHelper.ViewModels;
+using System.IO;
 
 namespace CookerHelper.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IKindsOfDishes _kindsOfDishes;
+        public HomeController(IKindsOfDishes kindsOfDishes)
+        {
+            _kindsOfDishes = kindsOfDishes;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            KindsOfDishesVM kindsOfDishesVM = new KindsOfDishesVM();
+            kindsOfDishesVM.KindsOfDishes = _kindsOfDishes.KindsOfDishes.ToList();
+            foreach (var item in kindsOfDishesVM.KindsOfDishes)
+            {
+                item.Image = Path.Combine("/imgKindsOfDishes", item.Image);
+            }
+            kindsOfDishesVM.Length = _kindsOfDishes.KindsOfDishes.Count();
+            return View(kindsOfDishesVM);
         }
 
         public IActionResult About()
