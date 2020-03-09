@@ -66,12 +66,19 @@ namespace CookerHelper
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            string fileDestDir = env.ContentRootPath;
-            fileDestDir = Path.Combine(fileDestDir, "Photos");
+            string fileDestRoot = env.ContentRootPath;
+            string fileDestDir = Path.Combine(fileDestRoot, "wwwroot", "images", "typesOfIngredients");
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(fileDestDir),
-                RequestPath = new PathString("/photos")
+                RequestPath = new PathString("/imgKindsOfIngredients")
+            });
+
+            fileDestDir = Path.Combine(fileDestRoot, "wwwroot", "images", "typesOfKitches");
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(fileDestDir),
+                RequestPath = new PathString("/imgKindsOfKitches")
             });
 
             // app.UseCookiePolicy();

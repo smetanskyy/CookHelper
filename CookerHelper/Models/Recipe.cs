@@ -16,9 +16,18 @@ namespace CookerHelper.Models
         public string Name { get; set; }
         [Required]
         public string Directions { get; set; }
+        [Required]
+        public ICollection<RecipeIngredients> RecipeIngredients { get; set; }
         public int PrepareTime { get; set; }
         public int CookTime { get; set; }
         public float Rate { get; set; }
         public int Vote { get; set; }
+        public int KindOfKitchenId { get; set; }
+        public virtual KindOfKitchen KindOfKitchen { get; set; }
+        public int Servings { get; set; }
+        public int KindOfDishId { get; set; }
+        public virtual KindOfDish KindOfDish { get; set; }
+        public string RecommendedDrink { get; set; }
+        public ICollection<RecipeImage> RecipeImages { get; set; }
     }
 }
