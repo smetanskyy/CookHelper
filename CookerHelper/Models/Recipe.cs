@@ -20,7 +20,7 @@ namespace CookerHelper.Models
         public ICollection<RecipeIngredients> RecipeIngredients { get; set; }
         public int PrepareTime { get; set; }
         public int CookTime { get; set; }
-        public float Rate { get; set; }
+        public double Rate { get; set; }
         public int Vote { get; set; }
         public int KindOfKitchenId { get; set; }
         public virtual KindOfKitchen KindOfKitchen { get; set; }

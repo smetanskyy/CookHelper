@@ -13,6 +13,8 @@ namespace CookerHelper.Models
         [Key]
         public int MeasuringId { get; set; }
         [Required, StringLength(100)]
-        public string MeasuringName { get; set; }
+        public string MeasuringNameUA { get; set; }
+        [Required, StringLength(100)]
+        public string MeasuringNameENG { get; set; }
     }
 }

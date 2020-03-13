@@ -20,7 +20,7 @@ namespace CookerHelper.Models
         public virtual Ingredient Ingredient { get; set; }
 
         [Required]
-        public float Amount { get; set; }
+        public double Amount { get; set; }
 
         public int MeasuringId { get; set; }
         public virtual Measuring Measuring { get; set; }

@@ -89,7 +89,7 @@ namespace CookerHelper
                 FileProvider = new PhysicalFileProvider(fileDestDir),
                 RequestPath = new PathString("/imgKindsOfDishes")
             });
-
+            
             // app.UseCookiePolicy();
 
             app.UseMvc(routes =>

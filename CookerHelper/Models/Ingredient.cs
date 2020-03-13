@@ -13,14 +13,16 @@ namespace CookerHelper.Models
         [Key]
         public int IngredientId { get; set; }
         [Required, StringLength(150)]
-        public string Name { get; set; }
+        public string NameUA { get; set; }
+        public string NameENG { get; set; }
         public int KindOfIngredientId { get; set; }
         public virtual KindOfIngredient KindOfIngredient { get; set; }
-        public int ProteinPer100g { get; set; }
-        public int FatPer100g { get; set; }
-        public int CarbohydratesPer100g { get; set; }
+        public double ProteinPer100g { get; set; }
+        public double FatPer100g { get; set; }
+        public double CarbohydratesPer100g { get; set; }
         public int CaloriesPer100g { get; set; }
-        public int Image { get; set; }
+        public double Worth1kg { get; set; }
+        public string Image { get; set; }
 
     }
 }
