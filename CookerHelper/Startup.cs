@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CookerHelper.DAL.EFContext;
 using CookerHelper.DAL.Interfaces;
 using CookerHelper.DAL.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +32,7 @@ namespace CookerHelper
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -46,8 +48,29 @@ namespace CookerHelper
             options.Stores.MaxLengthForKeys = 128)
             .AddEntityFrameworkStores<EFDbContext>().AddDefaultTokenProviders();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+            });
+
             services.AddTransient<IKindsOfDishes, KindsOfDishesRepository>();
 
+            // services.AddScoped<IJWTTokenService, JWTTokenService>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            // services.AddScoped(sp => );
+
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -55,6 +78,7 @@ namespace CookerHelper
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, EFDbContext dbContext)
         {
             dbContext.Database.EnsureCreated();
+            app.UseAuthentication();
 
             if (env.IsDevelopment())
             {
@@ -66,8 +90,11 @@ namespace CookerHelper
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
+
             string fileDestRoot = env.ContentRootPath;
             string fileDestDir = Path.Combine(fileDestRoot, "wwwroot", "images", "typesOfIngredients");
             app.UseStaticFiles(new StaticFileOptions()

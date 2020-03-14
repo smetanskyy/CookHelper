@@ -1,10 +1,14 @@
-﻿<div class="item">
-    <img src=@Model.Image alt="Kind Of Dish" class="img-responsive center-block" />
-    <div class="carousel-caption" style="position: absolute; top: 0; height: 100%;" role="option">
-        <p>
-            <a class="btn btn-default" href="#">
-                @Model.KindOfDishNameUA
+﻿<!-- start single gallery image -->
+<div class="mu-single-gallery col-md-4" title="@Model.KindOfDishNameUA">
+    <div class="mu-single-gallery-item">
+        <figure class="mu-single-gallery-img">
+            <a class="mu-imglink" href=@Model.Image>
+                <img alt="Kind Of Dish" src=@Model.Image>
+                <div class="mu-single-gallery-info">
+                    <img class="mu-view-btn" src="~/img/plus.png" alt="plus icon img">
+                </div>
             </a>
-        </p>
+        </figure>
     </div>
 </div>
+<!-- End single gallery image -->

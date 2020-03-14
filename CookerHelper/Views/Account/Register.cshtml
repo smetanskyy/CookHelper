@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "REGISTRATION";
+}
+
+@model CookerHelper.ViewModels.RegisterVM;
+<!-- Start Reservation section -->
+<section id="mu-reservation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-reservation-area">
+                    <div class="mu-title">
+                        <span class="mu-subtitle">Good choice!</span>
+                    </div>
+                    <div class="mu-reservation-content">
+
+                        <div class="col-md-12">
+                            <div class="mu-reservation-left">
+                                <form asp-controller="Account" asp-action="Register" asp-anti-forgery="true" class="mu-reservation-form">
+                                    <div class="mu-title">
+                                        <div class="validation" asp-validation-summary="ModelOnly"></div>
+                                    </div>
+
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name" />
+                                            <span asp-validation-for="FirstName"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <input asp-for="MiddleName" type="text" class="form-control" placeholder="Middle Name" />
+                                            <span asp-validation-for="MiddleName"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name" />
+                                            <span asp-validation-for="LastName"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
+                                            <span asp-validation-for="Email"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
+                                            <span asp-validation-for="Password"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <input asp-for="PasswordConfirm" type="password" class="form-control" placeholder="Confirm Password" />
+                                            <span asp-validation-for="PasswordConfirm"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="datepicker" placeholder="Birth Date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <button type="submit" class="mu-readmore-btn">SIGN UP</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Reservation section -->

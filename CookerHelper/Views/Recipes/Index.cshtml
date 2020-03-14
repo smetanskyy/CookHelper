@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "MAIN PART";
+}
+<!-- Start Gallery -->
+<section id="mu-gallery">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-gallery-area">
+
+                    <div class="mu-title">
+                        <span class="mu-subtitle">Discover</span>
+                        <h2>Our kind of dishes</h2>
+                    </div>
+                    <div class="mu-gallery-content">
+
+                        <!-- Start gallery image -->
+                        <div class="mu-gallery-body">
+
+                            @{
+                                foreach (KindOfDish dish in Model.KindsOfDishes)
+                                {
+                                    <!-- start single gallery image -->
+                                    @await Html.PartialAsync("AllKindsOfDishes", dish);
+                                    <!-- End single gallery image -->
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Gallery -->

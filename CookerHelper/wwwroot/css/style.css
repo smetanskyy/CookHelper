@@ -722,7 +722,7 @@ RESERVATION SECTION
 ====================*/
 
 #mu-reservation {
-    background-color: #222;
+    background-color: #888;
     display: inline;
     float: left;
     padding: 100px 0;
@@ -742,8 +742,8 @@ RESERVATION SECTION
 .mu-reservation-content {
     display: inline;
     float: left;
-    margin-top: 20px;
-    padding: 0 100px;
+    margin-top: 5px;
+    padding: 0 50px;
     width: 100%;
 }
 
@@ -764,7 +764,7 @@ RESERVATION SECTION
 .mu-reservation-left {
     display: inline;
     float: left;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     width: 100%;
 }
 
