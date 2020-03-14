@@ -21,14 +21,15 @@ namespace CookerHelper.Controllers
 
         public IActionResult Index()
         {
-            KindsOfDishesVM kindsOfDishesVM = new KindsOfDishesVM();
-            kindsOfDishesVM.KindsOfDishes = _kindsOfDishes.KindsOfDishes.ToList();
-            foreach (var item in kindsOfDishesVM.KindsOfDishes)
-            {
-                item.Image = Path.Combine("/imgKindsOfDishes", item.Image);
-            }
-            kindsOfDishesVM.Length = _kindsOfDishes.KindsOfDishes.Count();
-            return View(kindsOfDishesVM);
+            //////KindsOfDishesVM kindsOfDishesVM = new KindsOfDishesVM();
+            //////kindsOfDishesVM.KindsOfDishes = _kindsOfDishes.KindsOfDishes.ToList();
+            //////foreach (var item in kindsOfDishesVM.KindsOfDishes)
+            //////{
+            //////    item.Image = Path.Combine("/imgKindsOfDishes", item.Image);
+            //////}
+            //////kindsOfDishesVM.Length = _kindsOfDishes.KindsOfDishes.Count();
+
+            return View();
         }
 
         public IActionResult About()
