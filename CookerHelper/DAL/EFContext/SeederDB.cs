@@ -30,8 +30,8 @@ namespace CookerHelper.DAL.EFContext
 
             var roleSubscriber = new DbRole()
             {
-                Name = "subscriber",
-                NormalizedName = "SUBSCRIBER"
+                Name = "user",
+                NormalizedName = "USER"
             };
 
             if (!_manager.Roles.Any(r => r.Name == roleSubscriber.Name))
@@ -51,7 +51,7 @@ namespace CookerHelper.DAL.EFContext
             user.PhoneNumber = "HUAWEI";
             user.PhoneNumberConfirmed = true;
             user.SecurityStamp = Guid.NewGuid().ToString("D");
-            user.TwoFactorEnabled = true;
+            //user.TwoFactorEnabled = true;
 
             var password = new PasswordHasher<DbUser>();
             var hashed = password.HashPassword(user, "!QWEry123456");

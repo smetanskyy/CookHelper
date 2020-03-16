@@ -103,7 +103,6 @@ namespace CookerHelper.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM model)
         {
-
             if (ModelState.IsValid)
             {
                 var user = _context.Users.FirstOrDefault(u => u.Email == model.Email);
@@ -112,13 +111,13 @@ namespace CookerHelper.Controllers
                     ModelState.AddModelError("", "Incorrect login");
                     return View(model);
                 }
-                
+
                 if (_userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) == PasswordVerificationResult.Failed)
                 {
                     ModelState.AddModelError("", "Incorrect password");
                     return View(model);
                 }
-                
+
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
                 if (user != null)
@@ -126,7 +125,6 @@ namespace CookerHelper.Controllers
                     UserInfo info = new UserInfo();
                     info.Id = user.Id;
                     info.Email = user.Email;
-                    
                     HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(info));
                     await Authenticate(model.Email); // аутентификация
                     return RedirectToAction("Index", "Recipes");
@@ -145,7 +143,7 @@ namespace CookerHelper.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM model)
         {
-            var roleName = "User";
+            var roleName = "user";
             if (ModelState.IsValid)
             {
                 UserProfile userProfile = new UserProfile
@@ -162,6 +160,7 @@ namespace CookerHelper.Controllers
                     UserName = model.Email,
                     UserProfile = userProfile
                 };
+
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 result = _userManager.AddToRoleAsync(user, roleName).Result;
@@ -170,7 +169,15 @@ namespace CookerHelper.Controllers
                 {
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    
+                    UserInfo info = new UserInfo();
+                    info.Id = user.Id;
+                    info.Email = user.Email;
+
+                    HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(info));
+                    await Authenticate(model.Email); // аутентификация
+
+                    return RedirectToAction("Index", "Recipes");
                 }
                 else
                 {

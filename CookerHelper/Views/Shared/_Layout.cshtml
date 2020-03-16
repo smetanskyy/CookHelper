@@ -61,6 +61,16 @@
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">HOME</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="About">ABOUT US</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">CONTACT</a></li>
+
+                        @{
+                            foreach (var item in Html.ViewContext.HttpContext.Session.Keys)
+                            {
+                                <li style="font-weight: 800">
+                                    <a asp-area="" asp-controller="Account" asp-action="Login">@item</a>
+                                </li>
+                            };
+                        }
+
                         <li style="font-weight: 800">
                             <a asp-area="" asp-controller="Account" asp-action="Login">LOG IN</a>
                         </li>
