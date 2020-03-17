@@ -112,7 +112,16 @@ namespace CookerHelper.Controllers
                     return View(model);
                 }
 
-                if (_userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) == PasswordVerificationResult.Failed)
+                //if (_userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) == PasswordVerificationResult.Failed)
+                //{
+                //    ModelState.AddModelError("", "Incorrect password");
+                //    return View(model);
+                //}
+
+                var result = _signInManager
+              .PasswordSignInAsync(user, model.Password, false, false).Result;
+
+                if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", "Incorrect password");
                     return View(model);
@@ -125,7 +134,10 @@ namespace CookerHelper.Controllers
                     UserInfo info = new UserInfo();
                     info.Id = user.Id;
                     info.Email = user.Email;
-                    HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(info));
+                    
+                    //HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(info));
+                    HttpContext.Session.SetString(user.UserName, JsonConvert.SerializeObject(info));
+
                     await Authenticate(model.Email); // аутентификация
                     return RedirectToAction("Index", "Recipes");
                 }
@@ -174,9 +186,8 @@ namespace CookerHelper.Controllers
                     info.Id = user.Id;
                     info.Email = user.Email;
 
-                    HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(info));
+                    HttpContext.Session.SetString(user.UserName, JsonConvert.SerializeObject(info));
                     await Authenticate(model.Email); // аутентификация
-
                     return RedirectToAction("Index", "Recipes");
                 }
                 else
@@ -208,12 +219,13 @@ namespace CookerHelper.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 

@@ -63,17 +63,26 @@
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">CONTACT</a></li>
 
                         @{
-                            foreach (var item in Html.ViewContext.HttpContext.Session.Keys)
+                            if (Html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                            {
+                                <li style="font-weight: 800" title="LOG OUT">
+                                    <a asp-area="" asp-controller="Account" asp-action="Logout">@Html.ViewContext.HttpContext.User.Identity.Name</a>
+                                </li>
+                            }
+                            else
                             {
                                 <li style="font-weight: 800">
-                                    <a asp-area="" asp-controller="Account" asp-action="Login">@item</a>
+                                    <a asp-area="" asp-controller="Account" asp-action="Login">LOG IN</a>
                                 </li>
-                            };
-                        }
+                            }
 
-                        <li style="font-weight: 800">
-                            <a asp-area="" asp-controller="Account" asp-action="Login">LOG IN</a>
-                        </li>
+                            if (Html.ViewContext.HttpContext.Session.Keys.Count() > 0)
+                            {
+                                <li style="font-weight: 800" title="LOG OUT">
+                                    <a asp-area="" asp-controller="Account" asp-action="Logout">Hello, @Html.ViewContext.HttpContext.Session.Keys.ElementAtOrDefault(0)!</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
                 <!--/.nav-collapse -->

@@ -46,8 +46,8 @@ namespace CookerHelper.DAL.EFContext
             user.Email = "stepan@gmail.com";
             user.NormalizedEmail = "STEPAN@GMAIL.COM";
             user.EmailConfirmed = true;
-            user.UserName = "stepan@gmail.com"; ;
-            user.NormalizedUserName = "STEPAN@GMAIL.COM";
+            user.UserName = "stepan"; ;
+            user.NormalizedUserName = "STEPAN";
             user.PhoneNumber = "HUAWEI";
             user.PhoneNumberConfirmed = true;
             user.SecurityStamp = Guid.NewGuid().ToString("D");
